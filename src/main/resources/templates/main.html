@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wygeneruj vcard dla pracownika</title>
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div th:each="employee: ${employees}">
+            <div th:replace="list.html :: employee (employee=${employee})" ></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

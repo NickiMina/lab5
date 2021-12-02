@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div class="row" th:fragment="employee (employee)">
-  <div class="col">
-
-    <div class="card" style="margin-bottom: 10px; background-color: floralwhite; border-radius: 15px 15px 0px 0px;">
-      <h1 class="title" style="padding-top: 10px;" th:text="${employee.fullName}"></h1>
-      <p class="subTitle" th:text="${employee.organizationUnit}"></p>
-      <br>
-      <p><a class="btn btn-primary" style="width: 300px;"  th:href="${employee.profileHref}"><i class="fa fa-user" aria-hidden="true"></i>  My profile</a></p>
-      <p><a class="btn btn-primary" style="width: 300px;" th:attr="href=${employee.vCardLink}"><i class="fa fa-address-card-o "></i>  Generate vCard</a></p>
-      <!--                th:attr="href=${employee.vcardLink}"-->
-    </div>
-
+<div th:each="user : ${users}">
+  <div th:text="${user.getName()}" ></div>
+  <div th:text="${user.getLink()}"></div>
+  <div th:text="${user.getServiceField()}"></div>
+  <div >
+    <a th:href="@{'/card/' + ${user.toString()}}">
+      <span>Wygeneruj wizytowke</span>
+    </a>
   </div>
 
+  </br>
 </div>
+</br>
 </body>
 </html>

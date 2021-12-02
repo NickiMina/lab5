@@ -22,7 +22,7 @@ import ezvcard.VCard;
 
 @org.springframework.stereotype.Service
 public class Service {
-    PageContent dataSearched = new PageContent();
+    PageContent pageContent = new PageContent();
     List<ServiceModel> userList = new ArrayList<ServiceModel>();
 
     public String getData(Model model) {
@@ -30,17 +30,17 @@ public class Service {
         model.addAttribute("data", content);
         return "main";
     }
-    public String getUsers(@ModelAttribute PageContent data, Model model) {
+    public String getEmp(@ModelAttribute PageContent data, Model model) {
         Document document = null;
         Elements elements;
         int i=0;
 
         if(data.getName() != null && !data.getName().isEmpty()) {
-            dataSearched.setName(data.getName());
-            dataSearched.setPage(1);
+            pageContent.setName(data.getName());
+            pageContent.setPage(1);
         }
         try {
-            document = Jsoup.connect("https://panoramafirm.pl/" + dataSearched.getName() + "/firmy,"+ dataSearched.getPage() + ".html").get();
+            document = Jsoup.connect("https://panoramafirm.pl/" + pageContent.getName()).get();
             userList.clear();
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class Service {
         }
 
         model.addAttribute("users", userList);
-        return "users";
+        return "list";
     }
     public ResponseEntity<Resource> getCard(@ModelAttribute String userForCard, Model model) {
         VCard card = new VCard();

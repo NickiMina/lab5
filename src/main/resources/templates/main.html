@@ -5,12 +5,13 @@
     <title>Wygeneruj vcard dla pracownika</title>
 </head>
 <body>
-<div class="section">
-    <div class="container">
-        <div th:each="employee: ${employees}">
-            <div th:replace="list.html :: employee (employee=${employee})" ></div>
-        </div>
-    </div>
-</div>
+<h3>
+    Podaj nazwę pracownika:
+</h3>
+
+<form action="#" th:action="@{/users}" th:object="${data}" method="post">
+    <input type="text" th:field="*{name}" />
+    <input type="submit" th:value="Wyszukaj"/>
+</form>
 </body>
 </html>
